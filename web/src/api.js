@@ -42,6 +42,7 @@ const mapCocktail = (apiCocktail) => ({
 
     return acc;
   }, []),
+  instructions: apiCocktail.strInstructions,
 });
 
 export async function getRecentCocktails() {
@@ -60,4 +61,10 @@ export async function getCocktailsWithIngredients(ingredients) {
 
 export async function getIngredients() {
   return fetchApi("list.php?i=list");
+}
+
+export async function getCocktail(cocktailId) {
+  const res = await fetchApi(`lookup.php?i=${cocktailId}`);
+  const [drink] = res.drinks;
+  return mapCocktail(drink);
 }
