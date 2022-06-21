@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@rollup/plugin-commonjs': ^17.0.0
@@ -16,10 +16,10 @@ specifiers:
   typescript: 4.6.4
 
 dependencies:
-  '@smui/card': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-  '@smui/list': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
+  '@smui/card': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+  '@smui/list': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
   sirv-cli: 2.0.2
-  svelte-navigator: 3.1.5_svelte@3.48.0+typescript@4.6.4
+  svelte-navigator: 3.1.5_wwvk7nlptlrqo2czohjtk6eiqm
 
 devDependencies:
   '@rollup/plugin-commonjs': 17.1.0_rollup@2.72.1
@@ -27,7 +27,7 @@ devDependencies:
   rollup: 2.72.1
   rollup-plugin-css-only: 3.1.0_rollup@2.72.1
   rollup-plugin-livereload: 2.0.5
-  rollup-plugin-svelte: 7.1.0_rollup@2.72.1+svelte@3.48.0
+  rollup-plugin-svelte: 7.1.0_mei3nah5xaomx72ncrerzbgdge
   rollup-plugin-terser: 7.0.2_rollup@2.72.1
   svelte: 3.48.0
   typescript: 4.6.4
@@ -269,7 +269,7 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@smui/button/6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4:
+  /@smui/button/6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-+sBnqo8PlbvV7R3sHUOu+/y2xqiDwcpjLkW7BVvbK0r3Rit87yKCb5Octa0DnnTmNh9W6bHGe162v760drcSfw==}
     dependencies:
       '@material/button': 13.0.0
@@ -277,73 +277,73 @@ packages:
       '@material/feature-targeting': 13.0.0
       '@material/ripple': 13.0.0
       '@material/theme': 13.0.0
-      '@smui/common': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      '@smui/ripple': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      svelte2tsx: 0.5.9_svelte@3.48.0+typescript@4.6.4
+      '@smui/common': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      '@smui/ripple': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      svelte2tsx: 0.5.9_wwvk7nlptlrqo2czohjtk6eiqm
     transitivePeerDependencies:
       - svelte
       - typescript
     dev: false
 
-  /@smui/card/6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4:
+  /@smui/card/6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-QCFM7EuM0mH0hxzRbFbforgGFP9q8SLLUHIqW4D17QA5EYiVAuGrputlT4Zx8ujTDSs7/Glax+qCSL3WnF2L3g==}
     dependencies:
       '@material/card': 13.0.0
-      '@smui/button': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      '@smui/common': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      '@smui/icon-button': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      '@smui/ripple': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      svelte2tsx: 0.5.9_svelte@3.48.0+typescript@4.6.4
+      '@smui/button': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      '@smui/common': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      '@smui/icon-button': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      '@smui/ripple': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      svelte2tsx: 0.5.9_wwvk7nlptlrqo2czohjtk6eiqm
     transitivePeerDependencies:
       - svelte
       - typescript
     dev: false
 
-  /@smui/common/6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4:
+  /@smui/common/6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-Ual6505AOP75T+IneOQ6e1tnlhDflJX+yxa9T8Hx5X00MOiULvWACg/RW3c8UEQAc96YnEsA3utv5qDy8tZpmg==}
     dependencies:
       '@material/dom': 13.0.0
       '@tsconfig/svelte': 3.0.0
-      svelte2tsx: 0.5.9_svelte@3.48.0+typescript@4.6.4
+      svelte2tsx: 0.5.9_wwvk7nlptlrqo2czohjtk6eiqm
     transitivePeerDependencies:
       - svelte
       - typescript
     dev: false
 
-  /@smui/icon-button/6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4:
+  /@smui/icon-button/6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-2OwRT3smK5S5V+sI2c8URij0Z91/FVeGKZHy4V5q/GYSlaPu1WJtgFY1O/9wNYEYq0PkP4ohwq16ZiURy+rYTQ==}
     dependencies:
       '@material/density': 13.0.0
       '@material/icon-button': 13.0.0
-      '@smui/common': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      '@smui/ripple': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      svelte2tsx: 0.5.9_svelte@3.48.0+typescript@4.6.4
+      '@smui/common': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      '@smui/ripple': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      svelte2tsx: 0.5.9_wwvk7nlptlrqo2czohjtk6eiqm
     transitivePeerDependencies:
       - svelte
       - typescript
     dev: false
 
-  /@smui/list/6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4:
+  /@smui/list/6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-eMzbQPk9F07rxvynLalNqlrc6WwIGVJna6eotBYB2JELpSU+oB86xicgKK08d1w3TLY8zwVUmcigSEWmM843mw==}
     dependencies:
       '@material/dom': 13.0.0
       '@material/feature-targeting': 13.0.0
       '@material/list': 13.0.0
-      '@smui/common': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      '@smui/ripple': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      svelte2tsx: 0.5.9_svelte@3.48.0+typescript@4.6.4
+      '@smui/common': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      '@smui/ripple': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      svelte2tsx: 0.5.9_wwvk7nlptlrqo2czohjtk6eiqm
     transitivePeerDependencies:
       - svelte
       - typescript
     dev: false
 
-  /@smui/ripple/6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4:
+  /@smui/ripple/6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-9vlsFn8ZL0tpWKHmDfZPPzQzdusLNZaA3CzpJKnnMIWvlUZVixR780iHa1YXg0cEEQ2lPlSK4CFJEdiGMFRAow==}
     dependencies:
       '@material/dom': 13.0.0
       '@material/ripple': 13.0.0
-      '@smui/common': 6.0.0-beta.16_svelte@3.48.0+typescript@4.6.4
-      svelte2tsx: 0.5.9_svelte@3.48.0+typescript@4.6.4
+      '@smui/common': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      svelte2tsx: 0.5.9_wwvk7nlptlrqo2czohjtk6eiqm
     transitivePeerDependencies:
       - svelte
       - typescript
@@ -786,7 +786,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /rollup-plugin-svelte/7.1.0_rollup@2.72.1+svelte@3.48.0:
+  /rollup-plugin-svelte/7.1.0_mei3nah5xaomx72ncrerzbgdge:
     resolution: {integrity: sha512-vopCUq3G+25sKjwF5VilIbiY6KCuMNHP1PFvx2Vr3REBNMDllKHFZN2B9jwwC+MqNc3UPKkjXnceLPEjTjXGXg==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -913,13 +913,13 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-navigator/3.1.5_svelte@3.48.0+typescript@4.6.4:
+  /svelte-navigator/3.1.5_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-CGTaexasSLpUaTSN2AlYqii0JeisIgg7uZbm8XCLKlpM9Qv3IltlJ7Nvh90Xw9ND97KqtGOjNJ3LNwMN1ABV0w==}
     peerDependencies:
       svelte: 3.x
     dependencies:
       svelte: 3.48.0
-      svelte2tsx: 0.1.193_svelte@3.48.0+typescript@4.6.4
+      svelte2tsx: 0.1.193_wwvk7nlptlrqo2czohjtk6eiqm
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -927,9 +927,8 @@ packages:
   /svelte/3.48.0:
     resolution: {integrity: sha512-fN2YRm/bGumvjUpu6yI3BpvZnpIm9I6A7HR4oUNYd7ggYyIwSA/BX7DJ+UXXffLp6XNcUijyLvttbPVCYa/3xQ==}
     engines: {node: '>= 8'}
-    dev: true
 
-  /svelte2tsx/0.1.193_svelte@3.48.0+typescript@4.6.4:
+  /svelte2tsx/0.1.193_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-vzy4YQNYDnoqp2iZPnJy7kpPAY6y121L0HKrSBjU/IWW7DQ6T7RMJed2VVHFmVYm0zAGYMDl9urPc6R4DDUyhg==}
     peerDependencies:
       svelte: ^3.24
@@ -941,7 +940,7 @@ packages:
       typescript: 4.6.4
     dev: false
 
-  /svelte2tsx/0.5.9_svelte@3.48.0+typescript@4.6.4:
+  /svelte2tsx/0.5.9_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-xTDASjlh+rKo4QRhTRYSH87sS7fRoyX67xhGIMPKa3FYqftRHRmMes6nVgEskiuhBovslNHYYpMMg5YM5n/STg==}
     peerDependencies:
       svelte: ^3.24
@@ -995,7 +994,6 @@ packages:
     resolution: {integrity: sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /webidl-conversions/4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
