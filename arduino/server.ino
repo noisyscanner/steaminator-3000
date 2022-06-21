@@ -18,7 +18,7 @@ void handleBrew() {
     
     
     Serial.println(pin + ": " + ml);
-    prepare(pinForStr(pin), ml.toInt());
+    prepare(pin, ml.toInt());
   }
 
   dispense();

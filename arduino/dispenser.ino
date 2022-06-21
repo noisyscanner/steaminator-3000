@@ -19,6 +19,8 @@ byte ingredientIndex = 0;
 unsigned long dispenseStartTime = 0;
 unsigned long longestDispenseTime = 0;
 
+const uint8_t NO_PIN = 255;
+
 uint8_t pinForStr(String pin) {
   Serial.println("pinForStr: " + pin);
   if (pin == "0") return D0;
@@ -30,7 +32,7 @@ uint8_t pinForStr(String pin) {
   if (pin == "6") return D6;
   if (pin == "7") return D7;
 
-  return -1;
+  return NO_PIN;
 }
 
 void reset() {
@@ -38,7 +40,10 @@ void reset() {
   longestDispenseTime = 0;
 }
 
-void prepare(uint8_t pin, int ml) {
+void prepare(String pinStr, int ml) {
+  uint8_t pin = pinForStr(pinStr);
+  if (pin == NO_PIN) return;
+
   unsigned long ms = MS_PER_ML * ml;
   struct PinRecipe ingredient = { pin, ms, false };
   recipe[ingredientIndex] = ingredient;
@@ -58,7 +63,7 @@ void dispense() {
   Serial.println(endTime);
 
   for (byte i = 0; i < ingredientIndex; i++) {
-    byte pin = recipe[i].pin;
+    uint8_t pin = recipe[i].pin;
     Serial.print("On ");
     Serial.println(pin);
 
@@ -76,7 +81,7 @@ void dispense() {
       unsigned long endTimeForPin = dispenseStartTime + recipe[i].ms;
       if (mil >= endTimeForPin) {
         recipe[i].isDone = true;
-        byte pin = recipe[i].pin;
+        uint8_t pin = recipe[i].pin;
         Serial.print("Off ");
         Serial.println(pin);
         digitalWrite(pin, LOW);
@@ -85,4 +90,6 @@ void dispense() {
 
     delay(10);
   } while (mil <= endTime);
+
+  reset();
 }
