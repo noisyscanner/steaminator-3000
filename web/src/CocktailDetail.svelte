@@ -5,7 +5,14 @@
 
   export let cocktailId;
 
+  $: isMaking = false;
   $: cocktail$ = getCocktail(cocktailId);
+
+  async function handleMake(cocktail) {
+    isMaking = true;
+    await makeCocktail(cocktail);
+    isMaking = false;
+  }
 </script>
 
 <div>
@@ -33,7 +40,9 @@
     </article>
 
     <p>
-      <button on:click={() => makeCocktail(cocktail)}>MAKE</button>
+      <button on:click={() => handleMake(cocktail)} disabled={isMaking}>
+        {isMaking ? "Making..." : "MAKE"}
+      </button>
     </p>
   {/await}
 </div>
