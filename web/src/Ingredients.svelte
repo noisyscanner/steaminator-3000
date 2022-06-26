@@ -26,8 +26,8 @@
 
 	{:then data}
 		<select multiple style="height: 400px" on:change={updateIngredients}>
-			{#each data.drinks as ingredient}
-				<option>{ingredient.strIngredient1}</option>
+			{#each data as ingredient}
+				<option>{ingredient}</option>
 			{/each}
 		</select>
 		<button on:click={go}>Go</button>

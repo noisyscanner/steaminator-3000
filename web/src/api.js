@@ -49,6 +49,18 @@ export async function getRecentCocktails() {
   return fetchApi("recent.php").then((data) => data.drinks.map(mapCocktail));
 }
 
+export async function getIngredients() {
+  return fetchApi("list.php?i=list").then((data) =>
+    data.drinks.map((_) => _.strIngredient1).sort()
+  );
+}
+
+export async function getCocktail(cocktailId) {
+  const res = await fetchApi(`lookup.php?i=${cocktailId}`);
+  const [drink] = res.drinks;
+  return mapCocktail(drink);
+}
+
 export async function getCocktailsWithIngredients(ingredients) {
   const ingredientsStr = ingredients.join(",");
   const data = await fetchApi(`filter.php?i=${ingredientsStr}`);
@@ -56,15 +68,19 @@ export async function getCocktailsWithIngredients(ingredients) {
     return [];
   }
 
-  return data.drinks.map(mapCocktail);
+  // Have to make a request for each drink as the api sucks
+  return Promise.all(
+    data.drinks.map((partialDrink) => {
+      console.log(partialDrink);
+      return getCocktail(partialDrink.idDrink);
+    })
+  );
 }
 
-export async function getIngredients() {
-  return fetchApi("list.php?i=list");
-}
+export async function getIngredientsForMachine() {
+  const res = await fetch(`https://bradreed.co.uk/cocktais.json`).then((body) =>
+    body.json()
+  );
 
-export async function getCocktail(cocktailId) {
-  const res = await fetchApi(`lookup.php?i=${cocktailId}`);
-  const [drink] = res.drinks;
-  return mapCocktail(drink);
+  return res.ingredients;
 }
