@@ -1,37 +1,29 @@
 <script>
-	import { getIngredients, getCocktailsWithIngredients } from './api';
+  import Select from "svelte-select";
+  import { getIngredients, getCocktailsWithIngredients } from "./api";
 
-	export let setCocktails;
+  export let ingredients = [];
 
-	let selectedIngredients = [];
-	let ingredients$ = getIngredients();
+  const ingredients$ = getIngredients();
 
-	function updateIngredients(e) {
-		selectedIngredients = Array.from(e.target.selectedOptions).map(el => el.value);
-	}
-
-	/* $: { */
-	/* 	console.log(selectedIngredients); */
-	/* } */
-
-	async function go() {
-		const drinks = getCocktailsWithIngredients(selectedIngredients);
-		/* drinks.then(console.log); */
-		setCocktails(drinks);
-	}
+  function updateIngredients(e) {
+    const newValues = e.detail || [];
+    ingredients = newValues.map((item) => item.value);
+  }
 </script>
 
 <main>
-	{#await ingredients$}
-
-	{:then data}
-		<select multiple style="height: 400px" on:change={updateIngredients}>
-			{#each data as ingredient}
-				<option>{ingredient}</option>
-			{/each}
-		</select>
-		<button on:click={go}>Go</button>
-	{:catch error}
-		<p style="color: red">{error.message}</p>
-	{/await}
+  {#await ingredients$ then data}
+    <Select
+      items={data.map((ingredient) => ({
+        value: ingredient,
+        label: ingredient,
+      }))}
+      {ingredients}
+      on:select={updateIngredients}
+      isMulti
+    />
+  {:catch error}
+    <p style="color: red">{error.message}</p>
+  {/await}
 </main>

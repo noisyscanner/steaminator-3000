@@ -1,28 +1,31 @@
 <script>
   import Cocktails from "./Cocktails.svelte";
   import Ingredients from "./Ingredients.svelte";
-  import { getRecentCocktails, getIngredientsForMachine } from "./api";
+  import { getCocktailsWithIngredients, getIngredientsForMachine } from "./api";
 
   export let onSelect;
 
-  $: recentCocktails = [];
-  $: ifm = [];
-  getIngredientsForMachine().then(ingredientsForMachine => {
-    ifm = ingredientsForMachine;
-    /* let recentCocktails$ = getRecentCocktails(); */
-    recentCocktails = getCocktailsWithIngredients(ingredientsForMachine);
-  })
+  let ingredients = [];
+  const ingredients$ = getIngredientsForMachine();
+  ingredients$.then((data) => {
+    ingredients = data;
+  });
 
-  function setCocktails(newCocktails$) {
-    recentCocktails$ = newCocktails$;
+  $: cocktails$ = getCocktailsWithIngredients(ingredients);
+
+  /* ingredients$.then((ingredients) => { */
+  /*   cocktails$ = getCocktailsWithIngredients(ingredients); */
+  /* }); */
+
+  $: {
+    console.log("current ingredients", ingredients);
   }
 </script>
 
 <main>
-    <!-- TODO: Pull ingredients from JSON on server (for pins) -->
-    <Ingredients {setCocktails} />
+  <Ingredients bind:ingredients />
 
-  {#await recentCocktails$}
+  {#await cocktails$}
     <p>...waiting</p>
   {:then cocktails}
     <Cocktails drinks={cocktails} {onSelect} />

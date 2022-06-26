@@ -71,15 +71,14 @@ export async function getCocktailsWithIngredients(ingredients) {
   // Have to make a request for each drink as the api sucks
   return Promise.all(
     data.drinks.map((partialDrink) => {
-      console.log(partialDrink);
       return getCocktail(partialDrink.idDrink);
     })
   );
 }
 
 export async function getIngredientsForMachine() {
-  const res = await fetch(`https://bradreed.co.uk/cocktais.json`).then((body) =>
-    body.json()
+  const res = await fetch(`https://bradreed.co.uk/cocktails.json`).then(
+    (body) => body.json()
   );
 
   return res.ingredients;
