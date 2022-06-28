@@ -2,8 +2,8 @@
 const float FLOW = 1.75 / 60;
 const float MS_PER_ML = 1750 / 60;
 
-// TODO: "pull through" mechanism, where we can turn on/off at will to get liquid to end of pipe
-// TODO: allow querying arduino for currently installed ingredients
+const byte ON = LOW;
+const byte OFF = HIGH;
 
 struct PinRecipe {
   uint8_t pin;
@@ -23,7 +23,6 @@ const uint8_t NO_PIN = 255;
 
 uint8_t pinForStr(String pin) {
   Serial.println("pinForStr: " + pin);
-  if (pin == "0") return D0;
   if (pin == "1") return D1;
   if (pin == "2") return D2;
   if (pin == "3") return D3;
@@ -31,6 +30,7 @@ uint8_t pinForStr(String pin) {
   if (pin == "5") return D5;
   if (pin == "6") return D6;
   if (pin == "7") return D7;
+  if (pin == "8") return D8;
 
   return NO_PIN;
 }
@@ -67,7 +67,7 @@ void dispense() {
     Serial.print("On ");
     Serial.println(pin);
 
-    digitalWrite(pin, HIGH);
+    digitalWrite(pin, ON);
   }
 
   byte ingredientsDispensed = 0;
@@ -84,7 +84,7 @@ void dispense() {
         uint8_t pin = recipe[i].pin;
         Serial.print("Off ");
         Serial.println(pin);
-        digitalWrite(pin, LOW);
+        digitalWrite(pin, OFF);
       }
     }
 

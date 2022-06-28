@@ -25,6 +25,17 @@ void handleBrew() {
   server.send(200);
 }
 
+void handleSwitch() {
+  // Expects args to be in formdata like "0=0,1=1, 2=1, 3=0" etc, turns off with 0 on with 1
+  for (uint8_t i=0; i<server.args(); i++){
+    byte pin = pinForStr(server.argName(i));
+    boolean isOn = server.arg(i).toInt() > 0;
+    digitalWrite(pin, isOn ? ON: OFF);
+  }
+
+  server.send(200);
+}
+
 void serverSetup() {
   WiFi.mode(WIFI_STA);
   Serial.printf("Default hostname: %s\n", WiFi.hostname().c_str());
@@ -48,6 +59,7 @@ void serverSetup() {
 
   server.on("/", handleRoot);
   server.on("/brew", HTTP_POST, handleBrew);
+  server.on("/switch", HTTP_POST, handleSwitch);
 
   server.begin();
 }
