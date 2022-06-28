@@ -2,6 +2,7 @@
   import { Router, Route, Link } from "svelte-navigator";
   import List from "./List.svelte";
   import CocktailDetail from "./CocktailDetail.svelte";
+  import Manual from "./Manual.svelte";
 </script>
 
 <main>
@@ -10,6 +11,7 @@
 
     <Route path=":cocktailId" component={CocktailDetail} />
     <Route path="" component={List} />
+    <Route path="manual" component={Manual} />
   </Router>
 </main>
 

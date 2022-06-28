@@ -1,0 +1,96 @@
+<script>
+  const noOfPins = 8;
+  const pins = new Array(noOfPins).fill().map((_, i) => i + 1);
+
+  async function handleDispense(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = new URLSearchParams();
+    for (const [pin, ml] of formData.entries()) {
+      data.append(pin, ml || 0);
+    }
+
+    const COCKTAIL_URL = "http://192.168.0.93:3000";
+    await fetch(`${COCKTAIL_URL}/brew`, {
+      method: "POST",
+      body: data,
+      mode: "no-cors",
+    });
+  }
+
+  async function handleSwitch(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = new URLSearchParams();
+    for (const [pin, value] of formData.entries()) {
+      if (value === "skip") continue;
+      data.append(pin, value === "on" ? 1 : 0);
+    }
+
+    console.log(data.toString());
+
+    const COCKTAIL_URL = "http://192.168.0.93:3000";
+    await fetch(`${COCKTAIL_URL}/switch`, {
+      method: "POST",
+      body: data,
+      mode: "no-cors",
+    });
+  }
+</script>
+
+<form on:submit={handleDispense}>
+  <strong>Dispense</strong>
+  {#each pins as pin}
+    <label for={`pin${pin}`}>Pin {pin}</label>
+    <input type="number" id={`pin${pin}`} name={pin} />
+  {/each}
+
+  <br />
+  <input type="submit" />
+</form>
+
+<form on:submit={handleSwitch}>
+  <strong>Turn on/off</strong>
+  <ul>
+    {#each pins as pin}
+      <li>
+        <strong>Pin {pin}</strong>
+
+        <div class="radio">
+          <label for={`pin${pin}skip`}>Skip</label>
+          <input
+            type="radio"
+            id={`pin${pin}skip`}
+            name={pin}
+            value="skip"
+            checked
+          />
+        </div>
+
+        <div class="radio">
+          <label for={`pin${pin}on`}>On</label>
+          <input type="radio" id={`pin${pin}on`} name={pin} value="on" />
+        </div>
+
+        <div class="radio">
+          <label for={`pin${pin}off`}>Off</label>
+          <input type="radio" id={`pin${pin}off`} name={pin} value="off" />
+        </div>
+      </li>
+    {/each}
+  </ul>
+
+  <br />
+  <input type="submit" />
+</form>
+
+<style>
+  .radio {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  ul {
+    list-style: none;
+  }
+</style>
