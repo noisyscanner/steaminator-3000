@@ -7,7 +7,7 @@
 
 <main>
   <Router>
-    <h1>Steaminator 3000</h1>
+    <h1>©️Steaminator®️ 3000 <sup>Early Access™️</sup></h1>
 
     <Route path=":cocktailId" component={CocktailDetail} />
     <Route path="" component={List} />
@@ -21,5 +21,9 @@
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
+  }
+
+  sup {
+    color: red;
   }
 </style>
