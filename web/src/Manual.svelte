@@ -36,13 +36,44 @@
       mode: "no-cors",
     });
   }
+
+  async function handleAll(value) {
+    const data = new URLSearchParams();
+    for (let i = 1; i <= 8; i++) {
+      data.append(`${i}`, value);
+    }
+
+    const COCKTAIL_URL = "http://192.168.0.93:3000";
+    await fetch(`${COCKTAIL_URL}/switch`, {
+      method: "POST",
+      body: data,
+      mode: "no-cors",
+    });
+  }
+
+  async function handleSingle(pin, value) {
+    const data = new URLSearchParams();
+    data.append(`${pin}`, value);
+
+    const COCKTAIL_URL = "http://192.168.0.93:3000";
+    await fetch(`${COCKTAIL_URL}/switch`, {
+      method: "POST",
+      body: data,
+      mode: "no-cors",
+    });
+  }
 </script>
+
+<button on:click={() => handleAll(1)}>All on</button>
+<button on:click={() => handleAll(0)}>All off</button>
 
 <form on:submit={handleDispense}>
   <strong>Dispense</strong>
   {#each pins as pin}
     <label for={`pin${pin}`}>Pin {pin}</label>
     <input type="number" id={`pin${pin}`} name={pin} />
+    <button type="button" on:click={() => handleSingle(pin, 1)}>On</button>
+    <button type="button" on:click={() => handleSingle(pin, 0)}>Off</button>
   {/each}
 
   <br />

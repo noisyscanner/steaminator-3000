@@ -2,9 +2,6 @@
 const float FLOW = 1.75 / 60;
 const float MS_PER_ML = 1750 / 60;
 
-const byte ON = LOW;
-const byte OFF = HIGH;
-
 struct PinRecipe {
   uint8_t pin;
   unsigned long ms;
@@ -30,7 +27,7 @@ uint8_t pinForStr(String pin) {
   if (pin == "5") return D5;
   if (pin == "6") return D6;
   if (pin == "7") return D7;
-  if (pin == "8") return D8;
+  if (pin == "8") return D0; // D8 causes the mcu not to turn on
 
   return NO_PIN;
 }
