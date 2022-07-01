@@ -12,3 +12,12 @@ export async function makeCocktail(cocktail) {
     mode: "no-cors",
   });
 }
+
+export async function isHealthy() {
+  try {
+    await fetch(COCKTAIL_URL);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
