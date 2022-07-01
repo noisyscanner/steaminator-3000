@@ -8,7 +8,7 @@ const char* host = "steaminator";
 ESP8266WebServer server(3000);
 
 void handleRoot() {
-  server.send(200, "text/plain", "hello from esp8266!");
+  server.send(200, "text/plain", "OK");
 }
 
 void handleBrew() {
