@@ -63,17 +63,25 @@ export async function getCocktail(cocktailId) {
 
 export async function getCocktailsWithIngredients(ingredients) {
   const ingredientsStr = ingredients.join(",");
-  const data = await fetchApi(`filter.php?i=${ingredientsStr}`);
-  if (data.drinks === "None Found") {
-    return [];
-  }
+  const data = await fetch(
+    "http://localhost:8081/drinks/?" +
+      new URLSearchParams({
+        ingredients: ingredientsStr,
+      })
+  ).then((res) => res.json());
+
+  return data.drinks;
+  // const data = await fetchApi(`filter.php?i=${ingredientsStr}`);
+  // if (data.drinks === "None Found") {
+  //   return [];
+  // }
 
   // Have to make a request for each drink as the api sucks
-  return Promise.all(
-    data.drinks.map((partialDrink) => {
-      return getCocktail(partialDrink.idDrink);
-    })
-  );
+  // return Promise.all(
+  //   data.drinks.map((partialDrink) => {
+  //     return getCocktail(partialDrink.idDrink);
+  //   })
+  // );
 }
 
 export async function getIngredientsForMachine() {
