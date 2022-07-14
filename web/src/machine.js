@@ -1,10 +1,18 @@
+import { get } from "svelte/store";
+import { ingredients } from "./stores.ts";
 const COCKTAIL_URL = "http://192.168.0.93:3000";
 
-// TODO: Map of ingredients to pins on client side, store on server side (dumb flat file node server?)
 export async function makeCocktail(cocktail) {
   const data = new URLSearchParams();
-  data.append("0", "250");
-  data.append("1", "350");
+  const ingredientsValue = get(ingredients);
+  for (const ingredient of cocktail.ingredients) {
+    const pin = ingredientsValue[ingredient.name.toLowerCase()];
+    let { quantity, unit } = ingredient;
+    if (!unit) {
+      quantity *= 50; // no unit = ratio, 50ml per part
+    }
+    data.append(pin, quantity);
+  }
 
   await fetch(`${COCKTAIL_URL}/brew`, {
     method: "POST",

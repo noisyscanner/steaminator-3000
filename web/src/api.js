@@ -51,7 +51,7 @@ export async function getRecentCocktails() {
 
 export async function getIngredients() {
   return fetchApi("list.php?i=list").then((data) =>
-    data.drinks.map((_) => _.strIngredient1).sort()
+    data.drinks.map((_) => _.strIngredient1.toLowerCase()).sort()
   );
 }
 
@@ -62,7 +62,7 @@ export async function getCocktail(cocktailId) {
 }
 
 export async function getCocktailsWithIngredients(ingredients) {
-  const ingredientsStr = ingredients.join(",");
+  const ingredientsStr = Object.values(ingredients).join(",");
   const data = await fetch(
     "http://localhost:8081/drinks/?" +
       new URLSearchParams({

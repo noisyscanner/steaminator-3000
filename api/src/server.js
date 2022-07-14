@@ -13,10 +13,15 @@ const client = await connect();
 // - add an ingredient category field - ie rum, so we can filter out brands and stuff
 
 router.get("/drinks", async (ctx) => {
-  const ingredients = ctx.query.ingredients?.split(",");
+  const ingredients = ctx.query.ingredients?.toLowerCase().split(",");
   if (!ingredients) {
     throw Error("No ingredients provided");
   }
+
+  // PROBLEM: basically the data sucks
+  // loads of null or undefined measures
+  // can we have the ui so if null or undefined, you cannot make the cocktail,
+  // but it provides inputs, which auto write to the backend
 
   const coll = client.db("recipes").collection("recipes");
   const drinks = await coll
@@ -25,7 +30,11 @@ router.get("/drinks", async (ctx) => {
         $addFields: {
           ingredients: {
             // filter out non dispensable here
-            $map: { input: "$ingredients", as: "i", in: "$$i.name" },
+            $map: {
+              input: "$ingredients",
+              as: "i",
+              in: { $toLower: "$$i.name" },
+            },
           },
         },
       },

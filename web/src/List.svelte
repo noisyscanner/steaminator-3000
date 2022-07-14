@@ -1,29 +1,27 @@
 <script>
+  import { getContext } from "svelte";
   import Cocktails from "./Cocktails.svelte";
   import Ingredients from "./Ingredients.svelte";
-  import { getCocktailsWithIngredients, getIngredientsForMachine } from "./api";
+  import { getCocktailsWithIngredients } from "./api";
+  import { ingredients } from "./stores.ts";
 
   export let onSelect;
 
-  let ingredients = [];
-  const ingredients$ = getIngredientsForMachine();
-  ingredients$.then((data) => {
-    ingredients = data;
+  let ingredientsValue;
+  let cocktails$;
+
+  ingredients.subscribe((value) => {
+    ingredientsValue = Object.keys(value);
+    cocktails$ = getCocktailsWithIngredients(ingredientsValue);
   });
 
-  $: cocktails$ = getCocktailsWithIngredients(ingredients);
-
-  /* ingredients$.then((ingredients) => { */
-  /*   cocktails$ = getCocktailsWithIngredients(ingredients); */
-  /* }); */
-
   $: {
-    console.log("current ingredients", ingredients);
+    console.log("current ingredients", ingredientsValue);
   }
 </script>
 
 <main>
-  <Ingredients bind:ingredients />
+  <Ingredients bind:ingredients={ingredientsValue} />
 
   {#await cocktails$}
     <p>...waiting</p>
