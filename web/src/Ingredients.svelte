@@ -13,6 +13,7 @@
 </script>
 
 <main>
+  <strong>Ingredients: </strong>
   {#await ingredients$ then data}
     <Select
       items={data.map((ingredient) => ({

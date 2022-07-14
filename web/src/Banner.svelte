@@ -1,14 +1,13 @@
 <script>
-  import { isHealthy } from './machine.js';
+  import { isHealthy } from "./machine.js";
   const isHealthy$ = isHealthy();
-  console.log(isHealthy$);
 </script>
 
 {#await isHealthy$}
   <span class="connecting">Connecting...</span>
 {:then isHealthy}
-  <span class={isHealthy ? 'connected':'disconnected'}>
-    {isHealthy ? 'Connected' : 'Disconnected'}
+  <span class={isHealthy ? "connected" : "disconnected"}>
+    {isHealthy ? "Connected" : "Disconnected"}
   </span>
 {/await}
 
@@ -24,7 +23,7 @@
   }
 
   .connected {
-    background: green
+    background: green;
   }
 
   .connecting {

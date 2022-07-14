@@ -4,17 +4,20 @@
   import CocktailDetail from "./CocktailDetail.svelte";
   import Manual from "./Manual.svelte";
   import Banner from "./Banner.svelte";
+  import { getIngredientsForMachine } from "./api";
+  import { ingredients } from "./stores.ts";
 
-  /*
-      in:doABarrelRoll={{ duration: 3000 }}
-      out:fade
-      */
+  const ingredients$ = getIngredientsForMachine();
+
+  ingredients$.then((data) => {
+    ingredients.set(data);
+  });
 </script>
 
 <main>
   <Router>
     <Banner />
-    <h1>©️Steaminator®️ 3000 <sup>Early Access™️</sup></h1>
+    <h1>Steaminator®️ 3000 <sup>Early Access™️</sup></h1>
     <h2>Where dreams begin...</h2>
     <img
       alt="logo"

@@ -3,8 +3,6 @@
 
   export let drinks;
   import Card, { Content } from "@smui/card";
-
-  let clicked = "nothing yet";
 </script>
 
 <main>
@@ -21,10 +19,3 @@
   {/each}
 </main>
 
-<pre class="status">Clicked: {clicked}</pre>
-
-<style>
-  * :global(.demo-list) {
-    max-width: 300px;
-  }
-</style>
