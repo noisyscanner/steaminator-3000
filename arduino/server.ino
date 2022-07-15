@@ -8,7 +8,8 @@ const char* host = "steaminator";
 ESP8266WebServer server(3000);
 
 void handleRoot() {
-  server.send(200, "text/plain", "OK");
+  server.sendHeader("Access-Control-Allow-Origin", "*");
+  server.send(200, "text/plain", "hello from esp8266!");
 }
 
 void handleBrew() {

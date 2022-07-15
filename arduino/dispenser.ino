@@ -4,6 +4,7 @@ const float MS_PER_ML = 1750 / 60;
 
 struct PinRecipe {
   uint8_t pin;
+  String pinStr;
   unsigned long ms;
   boolean isDone;
 };
@@ -42,7 +43,7 @@ void prepare(String pinStr, int ml) {
   if (pin == NO_PIN) return;
 
   unsigned long ms = MS_PER_ML * ml;
-  struct PinRecipe ingredient = { pin, ms, false };
+  struct PinRecipe ingredient = { pin, pinStr, ms, false };
   recipe[ingredientIndex] = ingredient;
   ingredientIndex++;
 
@@ -53,17 +54,16 @@ void prepare(String pinStr, int ml) {
 
 void dispense() {
   unsigned long dispenseStartTime = millis();
-  Serial.print("Started at ");
-  Serial.println(dispenseStartTime);
   unsigned long endTime = dispenseStartTime + longestDispenseTime;
-  Serial.print("Ends at ");
-  Serial.println(endTime);
+  Serial.print("Time taken (ms): ");
+  Serial.println(endTime - dispenseStartTime);
 
   for (byte i = 0; i < ingredientIndex; i++) {
+    String pinStr = recipe[i].pinStr;
     uint8_t pin = recipe[i].pin;
     Serial.print("On ");
-    Serial.println(pin);
-
+    Serial.println(pinStr);
+  
     digitalWrite(pin, ON);
   }
 
@@ -78,9 +78,10 @@ void dispense() {
       unsigned long endTimeForPin = dispenseStartTime + recipe[i].ms;
       if (mil >= endTimeForPin) {
         recipe[i].isDone = true;
+        String pinStr = recipe[i].pinStr;
         uint8_t pin = recipe[i].pin;
         Serial.print("Off ");
-        Serial.println(pin);
+        Serial.println(pinStr);
         digitalWrite(pin, OFF);
       }
     }
