@@ -1,7 +1,7 @@
 <script>
   import { Link } from "svelte-navigator";
   import { getCocktail } from "./api";
-  import { makeCocktail } from "./machine";
+  import { makeCocktail } from "./machine.ts";
 
   export let cocktailId;
 

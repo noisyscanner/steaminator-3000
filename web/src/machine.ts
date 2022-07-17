@@ -1,6 +1,14 @@
 import { get } from "svelte/store";
-import { ingredients } from "./stores.ts";
+import { ingredients } from "./stores";
 const COCKTAIL_URL = "http://192.168.0.93:3000";
+
+export async function brew(data: BodyInit) {
+  await fetch(`${COCKTAIL_URL}/brew`, {
+    method: "POST",
+    body: data,
+    mode: "no-cors",
+  });
+}
 
 export async function makeCocktail(cocktail) {
   const data = new URLSearchParams();
@@ -14,11 +22,7 @@ export async function makeCocktail(cocktail) {
     data.append(pin, quantity);
   }
 
-  await fetch(`${COCKTAIL_URL}/brew`, {
-    method: "POST",
-    body: data,
-    mode: "no-cors",
-  });
+  await brew(data);
 }
 
 export async function isHealthy() {

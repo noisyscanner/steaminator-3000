@@ -1,5 +1,5 @@
 <script>
-  import { isHealthy } from "./machine.js";
+  import { isHealthy } from "./machine.ts";
   const isHealthy$ = isHealthy();
 </script>
 

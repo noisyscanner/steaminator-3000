@@ -1,11 +1,11 @@
-<script>
-  import { Router, Route, Link } from "svelte-navigator";
+<script lang="ts">
+  import { Router, Route } from "svelte-navigator";
   import List from "./List.svelte";
   import CocktailDetail from "./CocktailDetail.svelte";
   import Manual from "./Manual.svelte";
   import Banner from "./Banner.svelte";
   import { getIngredientsForMachine } from "./api";
-  import { ingredients } from "./stores.ts";
+  import { ingredients } from "./stores";
 
   const ingredients$ = getIngredientsForMachine();
 

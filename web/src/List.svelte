@@ -1,9 +1,8 @@
 <script>
-  import { getContext } from "svelte";
   import Cocktails from "./Cocktails.svelte";
   import Ingredients from "./Ingredients.svelte";
   import { getCocktailsWithIngredients } from "./api";
-  import { ingredients } from "./stores.ts";
+  import { ingredients } from "./stores";
 
   export let onSelect;
 
@@ -14,10 +13,6 @@
     ingredientsValue = Object.keys(value);
     cocktails$ = getCocktailsWithIngredients(ingredientsValue);
   });
-
-  $: {
-    console.log("current ingredients", ingredientsValue);
-  }
 </script>
 
 <main>

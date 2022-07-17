@@ -1,4 +1,8 @@
 <script>
+  import { get } from "svelte/store";
+  import { ingredients } from "./stores.ts";
+  import { brew } from "./machine.ts";
+
   const noOfPins = 8;
   const pins = new Array(noOfPins).fill().map((_, i) => i + 1);
 
@@ -10,12 +14,7 @@
       data.append(pin, ml || 0);
     }
 
-    const COCKTAIL_URL = "http://192.168.0.93:3000";
-    await fetch(`${COCKTAIL_URL}/brew`, {
-      method: "POST",
-      body: data,
-      mode: "no-cors",
-    });
+    await brew(data);
   }
 
   async function handleSwitch(e) {
@@ -27,14 +26,7 @@
       data.append(pin, value === "on" ? 1 : 0);
     }
 
-    console.log(data.toString());
-
-    const COCKTAIL_URL = "http://192.168.0.93:3000";
-    await fetch(`${COCKTAIL_URL}/switch`, {
-      method: "POST",
-      body: data,
-      mode: "no-cors",
-    });
+    await brew(data);
   }
 
   async function handleAll(value) {
@@ -43,25 +35,22 @@
       data.append(`${i}`, value);
     }
 
-    const COCKTAIL_URL = "http://192.168.0.93:3000";
-    await fetch(`${COCKTAIL_URL}/switch`, {
-      method: "POST",
-      body: data,
-      mode: "no-cors",
-    });
+    await brew(data);
   }
 
   async function handleSingle(pin, value) {
     const data = new URLSearchParams();
     data.append(`${pin}`, value);
 
-    const COCKTAIL_URL = "http://192.168.0.93:3000";
-    await fetch(`${COCKTAIL_URL}/switch`, {
-      method: "POST",
-      body: data,
-      mode: "no-cors",
-    });
+    await brew(data);
   }
+
+  let pinsToIngredients;
+  ingredients.subscribe((val) => {
+    pinsToIngredients = Object.fromEntries(
+      Object.entries(val).map(([k, v]) => [v, k])
+    );
+  });
 </script>
 
 <button on:click={() => handleAll(1)}>All on</button>
@@ -70,7 +59,9 @@
 <form on:submit={handleDispense}>
   <strong>Dispense</strong>
   {#each pins as pin}
-    <label for={`pin${pin}`}>Pin {pin}</label>
+    <label for={`pin${pin}`}>
+      Pin {pin} (<strong>{pinsToIngredients[pin] ?? "none"}</strong>)
+    </label>
     <input type="number" id={`pin${pin}`} name={pin} />
     <button type="button" on:click={() => handleSingle(pin, 1)}>On</button>
     <button type="button" on:click={() => handleSingle(pin, 0)}>Off</button>
@@ -85,7 +76,8 @@
   <ul>
     {#each pins as pin}
       <li>
-        <strong>Pin {pin}</strong>
+        Pin {pin} (<strong>{pinsToIngredients[pin] ?? "none"}</strong>)
+        <br />
 
         <div class="radio">
           <label for={`pin${pin}skip`}>Skip</label>
