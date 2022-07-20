@@ -55,6 +55,15 @@ router.get("/drinks", async (ctx) => {
   };
 });
 
+router.get("/drink/:id", async (ctx) => {
+  const { id } = ctx.params;
+
+  const coll = client.db("recipes").collection("recipes");
+  const drink = await coll.findOne({ id });
+
+  ctx.body = { drink };
+});
+
 app
   .use(async (ctx, next) => {
     try {
