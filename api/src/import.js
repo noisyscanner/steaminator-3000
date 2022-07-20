@@ -1,21 +1,28 @@
 // Script to read from cocktail-list.json, query Cocktail API to get full detail for each, and write to Mongo document
 // Then build an API around this mongo database with an actual sane response payload and filter logic
 
+import "dotenv/config";
 import fs from "fs";
 import path from "path";
 import fetch from "node-fetch";
+import { MongoClient } from "mongodb";
 import mapCocktail from "./mapCocktail.js";
 
-import { MongoClient } from "mongodb";
+let filename = process.argv[2];
+if (!filename) {
+  throw Error("Filename not provided");
+}
 
-const uri = "mongodb://BRAD-PC:27017/?maxPoolSize=20&w=majority";
+filename = path.resolve(filename);
+if (!fs.existsSync(filename)) {
+  throw Error("File does not exist");
+}
+
+const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 
-const filename = path.resolve("/home/brad/dev/cocktail-list.json");
 const file = fs.readFileSync(filename);
 const { drinks } = JSON.parse(file);
-
-const firstCocktail = drinks[0];
 
 const apiKey = "9973533";
 
