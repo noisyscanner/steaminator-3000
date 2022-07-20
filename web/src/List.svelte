@@ -36,6 +36,11 @@
 </main>
 
 <style>
+  main {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
   h2 {
     font-family: cursive;
     font-style: italic;

@@ -27,7 +27,6 @@
 <style>
   main {
     padding: 1em;
-    max-width: 600px;
     margin: 0 auto;
     text-align: center;
   }

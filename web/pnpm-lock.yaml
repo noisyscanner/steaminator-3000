@@ -4,7 +4,10 @@ specifiers:
   '@rollup/plugin-commonjs': ^17.0.0
   '@rollup/plugin-node-resolve': ^11.0.0
   '@rollup/plugin-typescript': ^8.0.0
+  '@smui/button': 6.0.0-beta.16
   '@smui/card': 6.0.0-beta.16
+  '@smui/chips': 6.0.0-beta.16
+  '@smui/layout-grid': 6.0.0-beta.16
   '@smui/list': 6.0.0-beta.16
   '@tsconfig/svelte': ^2.0.0
   rollup: ^2.3.4
@@ -22,7 +25,10 @@ specifiers:
   typescript: ^4.0.0
 
 dependencies:
+  '@smui/button': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
   '@smui/card': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+  '@smui/chips': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+  '@smui/layout-grid': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
   '@smui/list': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
   sirv-cli: 2.0.2
   svelte-navigator: 3.1.5_wwvk7nlptlrqo2czohjtk6eiqm
@@ -125,6 +131,40 @@ packages:
       tslib: 2.4.0
     dev: false
 
+  /@material/checkbox/13.0.0:
+    resolution: {integrity: sha512-tRC6n9Jq7GgdU0d1F8NOvUy6WiRZR58tUgL1QqoiQK9PGKSt0dAF3Aa48uubO7/Lt9K4NqgwV6/OeHv8pHaM/w==}
+    dependencies:
+      '@material/animation': 13.0.0
+      '@material/base': 13.0.0
+      '@material/density': 13.0.0
+      '@material/dom': 13.0.0
+      '@material/feature-targeting': 13.0.0
+      '@material/ripple': 13.0.0
+      '@material/theme': 13.0.0
+      '@material/touch-target': 13.0.0
+      tslib: 2.4.0
+    dev: false
+
+  /@material/chips/13.0.0:
+    resolution: {integrity: sha512-Ov4runDbrROUpMqKyCi3lpknfrLzGwtV+/rfYIgTYUkEVpCHXHddxXxcjP4zqh3QLXnE6ma92PLGcxCb/zzogQ==}
+    dependencies:
+      '@material/animation': 13.0.0
+      '@material/base': 13.0.0
+      '@material/checkbox': 13.0.0
+      '@material/density': 13.0.0
+      '@material/dom': 13.0.0
+      '@material/elevation': 13.0.0
+      '@material/feature-targeting': 13.0.0
+      '@material/ripple': 13.0.0
+      '@material/rtl': 13.0.0
+      '@material/shape': 13.0.0
+      '@material/theme': 13.0.0
+      '@material/tokens': 13.0.0
+      '@material/touch-target': 13.0.0
+      '@material/typography': 13.0.0
+      tslib: 2.4.0
+    dev: false
+
   /@material/density/13.0.0:
     resolution: {integrity: sha512-ppJTzOsuhjQam5GvHaq/XZocZNUr+41XQ2sd5nONAmQ0wwzXgqG0FaxtF1EXqK3uZFadz+vAu6enagre9DXhTA==}
     dependencies:
@@ -166,6 +206,12 @@ packages:
       '@material/rtl': 13.0.0
       '@material/theme': 13.0.0
       '@material/touch-target': 13.0.0
+      tslib: 2.4.0
+    dev: false
+
+  /@material/layout-grid/13.0.0:
+    resolution: {integrity: sha512-9L1BVLRIyetm/AOC+59+yca6R0OO2AJKHiUMdZrxgUVjqVblqWXEMeONZqslFRGHBiSIaYdrDIhn4ZTYY6tKUA==}
+    dependencies:
       tslib: 2.4.0
     dev: false
 
@@ -366,6 +412,20 @@ packages:
       - typescript
     dev: false
 
+  /@smui/chips/6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm:
+    resolution: {integrity: sha512-mfkVFAna0qsyYcyKL8LuqGxIteclKDm4PJ+yXUUk3VbsUcKFFf6FZqvM0xsjZt4QIKkrnDaALtCOviheHQNH7A==}
+    dependencies:
+      '@material/chips': 13.0.0
+      '@material/dom': 13.0.0
+      '@material/rtl': 13.0.0
+      '@smui/common': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      '@smui/ripple': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      svelte2tsx: 0.5.9_wwvk7nlptlrqo2czohjtk6eiqm
+    transitivePeerDependencies:
+      - svelte
+      - typescript
+    dev: false
+
   /@smui/common/6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm:
     resolution: {integrity: sha512-Ual6505AOP75T+IneOQ6e1tnlhDflJX+yxa9T8Hx5X00MOiULvWACg/RW3c8UEQAc96YnEsA3utv5qDy8tZpmg==}
     dependencies:
@@ -384,6 +444,17 @@ packages:
       '@material/icon-button': 13.0.0
       '@smui/common': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
       '@smui/ripple': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
+      svelte2tsx: 0.5.9_wwvk7nlptlrqo2czohjtk6eiqm
+    transitivePeerDependencies:
+      - svelte
+      - typescript
+    dev: false
+
+  /@smui/layout-grid/6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm:
+    resolution: {integrity: sha512-xJFYyuEfRpM/SGP5B1f6EzRE+ZUhykRQWi4+PEqI/TERvMeb/9MK0vydGavAg+3Ye4b9R7nx3H2CNlsXs79q1A==}
+    dependencies:
+      '@material/layout-grid': 13.0.0
+      '@smui/common': 6.0.0-beta.16_wwvk7nlptlrqo2czohjtk6eiqm
       svelte2tsx: 0.5.9_wwvk7nlptlrqo2czohjtk6eiqm
     transitivePeerDependencies:
       - svelte
