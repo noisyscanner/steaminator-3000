@@ -39,7 +39,7 @@ async function getCocktail(cocktailId) {
 }
 
 await client.connect();
-const coll = client.db("recipes").collection("recipes");
+const coll = client.db("recipes").collection("cocktails");
 
 for (const drink of drinks) {
   try {
