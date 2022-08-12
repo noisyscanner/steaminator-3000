@@ -7,9 +7,7 @@
   import { getIngredientsForMachine } from "./api";
   import { ingredients } from "./stores";
 
-  const ingredients$ = getIngredientsForMachine();
-
-  ingredients$.then((data) => {
+  getIngredientsForMachine().then((data) => {
     ingredients.set(data);
   });
 </script>

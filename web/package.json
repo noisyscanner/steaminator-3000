@@ -25,7 +25,6 @@
     "typescript": "^4.0.0"
   },
   "dependencies": {
-    "@smui/button": "6.0.0-beta.16",
     "@smui/card": "6.0.0-beta.16",
     "@smui/chips": "6.0.0-beta.16",
     "@smui/layout-grid": "6.0.0-beta.16",

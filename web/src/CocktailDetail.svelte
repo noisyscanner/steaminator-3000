@@ -1,24 +1,31 @@
-<script>
+<script lang="ts">
   import { Link } from "svelte-navigator";
   import { getCocktail } from "./api";
-  import { makeCocktail } from "./machine.ts";
+  import { makeCocktail } from "./machine";
   import Chip, { Text } from "@smui/chips";
   import LayoutGrid, { Cell } from "@smui/layout-grid";
+  import type { Drink } from "./types";
 
-  export let cocktailId;
+  export let cocktailId: string;
 
-  $: isMaking = false;
-  $: cocktail$ = getCocktail(cocktailId);
+  let isMaking = false;
+  const cocktail$ = getCocktail(cocktailId);
 
-  async function handleMake(cocktail) {
+  async function handleMake(cocktail: Drink) {
     isMaking = true;
-    await makeCocktail(cocktail);
-    isMaking = false;
+    try {
+      await makeCocktail(cocktail);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      isMaking = false;
+    }
   }
 </script>
 
 <div>
   <Link to="/">Go Back</Link>
+
   {#await cocktail$}
     <p>Loading cocktail...</p>
   {:then cocktail}
@@ -49,11 +56,9 @@
       {cocktail.instructions}
     </article>
 
-    <p>
-      <button on:click={() => handleMake(cocktail)} disabled={isMaking}>
-        {isMaking ? "Making..." : "MAKE"}
-      </button>
-    </p>
+    <button on:click={() => handleMake(cocktail)} disabled={isMaking}>
+      {isMaking ? "Making..." : "MAKE"}
+    </button>
   {/await}
 </div>
 
@@ -74,5 +79,28 @@
 
   .ingredients {
     text-align: left;
+  }
+
+  button {
+    font-size: 32pt;
+    border-radius: 5px;
+    border: 1px solid;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    background: #42b10a;
+    color: #fff;
+    transition: background 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    margin: 0.5rem 0 0;
+    position: sticky;
+    bottom: 0;
+  }
+
+  button:disabled {
+    cursor: unset;
+  }
+
+  button:hover,
+  button:disabled {
+    background: #286807;
   }
 </style>

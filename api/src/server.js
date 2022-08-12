@@ -8,6 +8,7 @@ const app = new Koa();
 const router = new Router();
 
 const client = await connect();
+const coll = client.db("recipes").collection("cocktails");
 
 // TODO:
 // - ignore "non dispensable" ingredients when filtering. Eg ice or sugar cubes - return drinks containing these even if not provided in ingredients var
@@ -19,12 +20,6 @@ router.get("/drinks", async (ctx) => {
     throw Error("No ingredients provided");
   }
 
-  // PROBLEM: basically the data sucks
-  // loads of null or undefined measures
-  // can we have the ui so if null or undefined, you cannot make the cocktail,
-  // but it provides inputs, which auto write to the backend
-
-  const coll = client.db("recipes").collection("recipes");
   const drinks = await coll
     .aggregate([
       {
@@ -57,10 +52,7 @@ router.get("/drinks", async (ctx) => {
 
 router.get("/drink/:id", async (ctx) => {
   const { id } = ctx.params;
-
-  const coll = client.db("recipes").collection("recipes");
   const drink = await coll.findOne({ id });
-
   ctx.body = { drink };
 });
 

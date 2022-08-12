@@ -1,18 +1,12 @@
 <script>
   import Cocktails from "./Cocktails.svelte";
-  import Ingredients from "./Ingredients.svelte";
+  /* import Ingredients from "./Ingredients.svelte"; */
   import { getCocktailsWithIngredients } from "./api";
   import { ingredients } from "./stores";
 
   export let onSelect;
 
-  let ingredientsValue;
-  let cocktails$;
-
-  ingredients.subscribe((value) => {
-    ingredientsValue = Object.keys(value);
-    cocktails$ = getCocktailsWithIngredients(ingredientsValue);
-  });
+  $: cocktails$ = getCocktailsWithIngredients(Object.keys($ingredients));
 </script>
 
 <main>

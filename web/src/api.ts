@@ -1,11 +1,12 @@
 import apiKey from "./apiKey";
+import type { Drink, IngredientMap } from "./types";
 
-const fetchApi = (path) =>
+const fetchApi = (path: string) =>
   fetch(`https://www.thecocktaildb.com/api/json/v2/${apiKey}/${path}`).then(
     (body) => body.json()
   );
 
-const fetchLocalApi = (path) =>
+const fetchLocalApi = (path: string) =>
   fetch(`http://localhost:8081/${path}`).then((body) => body.json());
 
 export async function getIngredients() {
@@ -14,12 +15,12 @@ export async function getIngredients() {
   );
 }
 
-export async function getCocktail(cocktailId) {
+export async function getCocktail(cocktailId: string) {
   const res = await fetchLocalApi(`drink/${cocktailId}`);
-  return res.drink;
+  return res.drink as Drink;
 }
 
-export async function getCocktailsWithIngredients(ingredients) {
+export async function getCocktailsWithIngredients(ingredients: IngredientMap) {
   const ingredientsStr = Object.values(ingredients).join(",");
   const data = await fetchLocalApi(
     "drinks/?" +
@@ -28,7 +29,7 @@ export async function getCocktailsWithIngredients(ingredients) {
       })
   );
 
-  return data.drinks;
+  return data.drinks as Drink[];
 }
 
 export async function getIngredientsForMachine() {
@@ -36,5 +37,5 @@ export async function getIngredientsForMachine() {
     (body) => body.json()
   );
 
-  return res.ingredients;
+  return res.ingredients as IngredientMap;
 }
