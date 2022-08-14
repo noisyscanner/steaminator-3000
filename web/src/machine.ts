@@ -37,6 +37,14 @@ export async function makeCocktail(cocktail: Drink) {
   await brew(data);
 }
 
+export async function switchPins(data: BodyInit) {
+  await fetch(`${COCKTAIL_URL}/switch`, {
+    method: "POST",
+    body: data,
+    mode: "no-cors",
+  });
+}
+
 export async function isHealthy() {
   try {
     await fetch(COCKTAIL_URL);

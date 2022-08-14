@@ -1,7 +1,7 @@
 <script>
   import { get } from "svelte/store";
   import { ingredients } from "./stores.ts";
-  import { brew } from "./machine.ts";
+  import { brew, switchPins } from "./machine.ts";
 
   const noOfPins = 8;
   const pins = new Array(noOfPins).fill().map((_, i) => i + 1);
@@ -26,7 +26,7 @@
       data.append(pin, value === "on" ? 1 : 0);
     }
 
-    await brew(data);
+    await switchPins(data);
   }
 
   async function handleAll(value) {
@@ -35,14 +35,14 @@
       data.append(`${i}`, value);
     }
 
-    await brew(data);
+    await switchPins(data);
   }
 
   async function handleSingle(pin, value) {
     const data = new URLSearchParams();
     data.append(`${pin}`, value);
 
-    await brew(data);
+    await switchPins(data);
   }
 
   let pinsToIngredients;

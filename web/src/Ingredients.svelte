@@ -1,6 +1,6 @@
 <script>
   import Select from "svelte-select";
-  import { getIngredients, getCocktailsWithIngredients } from "./api";
+  import { getIngredients } from "./api";
 
   export let ingredients = [];
 
