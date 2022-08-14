@@ -10,4 +10,5 @@
 .pnp.*
 
 .DS_Store
+.env
 apiKey.js
