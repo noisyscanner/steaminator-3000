@@ -45,6 +45,15 @@
     await switchPins(data);
   }
 
+  async function test() {
+    for (let i = 1; i <= noOfPins; i++) {
+      console.log(i);
+      await handleSingle(i, 1);
+      await new Promise(r => setTimeout(r, 1000));
+      await handleSingle(i, 0);
+    }
+  }
+
   let pinsToIngredients;
   ingredients.subscribe((val) => {
     pinsToIngredients = Object.fromEntries(
@@ -55,6 +64,7 @@
 
 <button on:click={() => handleAll(1)}>All on</button>
 <button on:click={() => handleAll(0)}>All off</button>
+<button on:click={() => test()}>Test</button>
 
 <form on:submit={handleDispense}>
   <strong>Dispense</strong>

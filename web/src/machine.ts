@@ -30,6 +30,8 @@ export async function makeCocktail(cocktail: Drink) {
     const pin = ingredientsValue[ingredient.name.toLowerCase()];
     const { quantity } = ingredient;
     let percentage = totalVolume / quantity;
+    // TODO: Send just parts ie ratio instead of converting to ml
+    // ml per part can be set at mcu level
     const mlAmount = percentage * ML_PER_PART;
     data.append(pin, `${mlAmount}`);
   }
